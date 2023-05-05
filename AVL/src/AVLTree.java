@@ -91,7 +91,12 @@ public class AVLTree<T extends Comparable<T>> {
         return left;
     }
 
-    // Rotate the AVL Tree to the left
+    /**
+     * Realiza una rotación hacia la izquierda en el árbol AVL.
+     *
+     * @param node el nodo alrededor del cual se realiza la rotación.
+     * @return el nodo rotado.
+     */
     private AVLNode<T> rotateLeft(AVLNode<T> node) {
         AVLNode<T> right = node.right;
         node.right = right.left;
@@ -101,26 +106,46 @@ public class AVLTree<T extends Comparable<T>> {
         return right;
     }
 
-    // Update the height of a node
+    /**
+     * Actualiza la altura de un nodo en un árbol AVL.
+     *
+     * @param node el nodo cuya altura se va a actualizar.
+     */
     private void updateHeight(AVLNode<T> node) {
         node.height = Math.max(height(node.left), height(node.right)) + 1;
     }
 
-    // Get the height of a node
+
+    /**
+     * Devuelve la altura de un nodo en un árbol AVL.
+     *
+     * @param node el nodo del que se va a devolver la altura.
+     * @return un entero que representa la altura del nodo.
+     */
     private int height(AVLNode<T> node) {
         return node == null ? -1 : node.height;
     }
 
     // Inner class for AVL Node
+    /**
+     * Clase interna para representar un nodo en un árbol AVL.
+     * Cada nodo tiene un dato, dos hijos (izquierdo y derecho), y una altura.
+     * @param <T> el tipo de dato almacenado en el nodo.
+     */
     private static class AVLNode<T> {
         private T data;
         private AVLNode<T> left;
         private AVLNode<T> right;
         private int height;
 
+        /**
+         * Crea un nuevo nodo con el dato especificado y altura inicial de 0.
+         * @param data el dato a almacenar en el nodo.
+         */
         public AVLNode(T data) {
             this.data = data;
             this.height = 0;
         }
     }
+
 }
